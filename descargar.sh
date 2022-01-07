@@ -17,5 +17,23 @@ git clone https://github.com/devrandom/gitian-builder gitian-builder
 
 cd gitian-builder
 
+    # KVM
 bin/make-base-vm
 bin/make-base-vm --arch i386
+
+    # LXC
+bin/make-base-vm --lxc
+bin/make-base-vm --lxc --arch i386
+
+    # Set the USE_LXC environment variable to use LXC instead of KVM:
+
+export USE_LXC=1
+
+    # Docker
+bin/make-base-vm --docker
+bin/make-base-vm --docker --arch i386
+
+    # Si tiene todo configurado correctamente, debería poder:
+
+PATH=$PATH:$(pwd)/libexec
+make-clean-vm --suite xenial --arch i386
